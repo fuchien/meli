@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Router from 'next/router';
 
 // COMPONENTS
-import HeaderUI from '../components/Header';
+import HeaderUI from '../../components/Header';
 
 export default function Header() {
     const [value, setValue] = useState('');
