@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Router from 'next/router';
+import { Router } from '../../../routes';
 
 // COMPONENTS
 import HeaderUI from '../../components/Header';
@@ -13,7 +13,7 @@ export default function Header() {
 
     const handleSubmitForm = e => {
         e.preventDefault();
-        Router.push(`/items/?search=${value}`);
+        Router.pushRoute(`/items/?search=${value}`);
     };
 
     return (
