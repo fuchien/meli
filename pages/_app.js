@@ -5,6 +5,9 @@ import App, { Container } from 'next/app';
 // CONTAINERS
 import Header from '../src/containers/Header';
 
+// STYLED-COMPONENTS
+import { GlobalStyle } from '../src/global/styles';
+
 class MyApp extends App {
     render() {
         const { Component, pageProps } = this.props;
@@ -18,15 +21,7 @@ class MyApp extends App {
                     />
                     <meta charSet="utf-8" />
                 </Head>
-                <style jsx global>{`
-                    *,
-                    html,
-                    body {
-                        padding: 0px;
-                        margin: 0px;
-                        box-sizing: border-box;
-                    }
-                `}</style>
+                <GlobalStyle />
                 <Header />
                 <Component {...pageProps} />
             </Container>
