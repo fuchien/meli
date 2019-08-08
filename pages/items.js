@@ -9,12 +9,12 @@ import api from '../src/services/api';
 import ItemsUI from '../src/containers/Items';
 
 const Items = ({ data }) => (
-    <div>
+    <>
         <Head>
             <title>Items</title>
         </Head>
         <ItemsUI data={data} />
-    </div>
+    </>
 );
 
 Items.getInitialProps = async ({ query }) => {
