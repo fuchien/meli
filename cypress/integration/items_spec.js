@@ -1,6 +1,28 @@
+import { mockItems } from '../../src/mocks/items.mock';
+
 Cypress.on('uncaught:exception', (err, runnable) => false);
 describe('MELI Items page', () => {
     const typedText = 'Apple ipod';
+    const mockFunction = results => {
+        const response = {
+            site_id: 'MLA',
+            query: 'Apple ipod',
+            paging: {
+                total: 2109,
+                offset: 0,
+                limit: 50,
+                primary_results: 1000
+            },
+            results
+        };
+        cy.server();
+        cy.route({
+            method: 'GET',
+            response,
+            status: 200,
+            url: `https://api.mercadolibre.com/sites/MLA/search?q=${typedText}`
+        });
+    };
     beforeEach(() => {
         cy.visit(`/items/?search=${typedText}`);
     });
@@ -55,10 +77,12 @@ describe('MELI Items page', () => {
     // });
 
     it('should show results after search item', () => {
+        mockFunction(mockItems);
         cy.get('.items .items__list').should('be.visible');
     });
 
     it('should show 4 results after search item', () => {
+        mockFunction(mockItems);
         cy.get('.items .items__list')
             .should('be.visible')
             .children('.items__list__item')
@@ -66,6 +90,7 @@ describe('MELI Items page', () => {
     });
 
     it('should show correct result card', () => {
+        mockFunction(mockItems);
         cy.get('.items .items__list')
             .should('be.visible')
             .children('.items__list__item')
@@ -78,5 +103,18 @@ describe('MELI Items page', () => {
             .should('be.visible')
             .get('.item__address__state')
             .should('be.visible');
+    });
+
+    it('should change to item details route', () => {
+        mockFunction(mockItems);
+        cy.get('.items .items__list')
+            .should('be.visible')
+            .children('.items__list__item')
+            .first()
+            .click({ force: true, multiple: true })
+            .location()
+            .should(loc => {
+                expect(loc.pathname).to.eq(`/items/${mockItems[0].id}`);
+            });
     });
 });
