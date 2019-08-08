@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Items = () => {
-    const [value, setValue] = useState('');
+// COMPONENTS
+import ItemsUI from '../../components/Items';
 
-    return <div>ITEMS</div>;
+const Items = ({ data }) => {
+    return <ItemsUI data={data} />;
 };
 
 export default Items;
