@@ -8,7 +8,7 @@ export const Container = styled.div`
     align-items: center;
 
     .item__img {
-        max-width: 150px;
+        width: 100%;
         height: auto;
         flex: 1;
     }
