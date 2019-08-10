@@ -28,4 +28,9 @@ describe('MELI Item Details page', () => {
             .get('.details__description__text')
             .should('be.visible');
     });
+
+    it('should show error msg if not exist the product id', () => {
+        cy.visit(`/items/asdasiudhu12h3iu21kj`);
+        cy.get('.details__error').should('be.visible');
+    });
 });
