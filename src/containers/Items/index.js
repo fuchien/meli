@@ -21,8 +21,12 @@ const Items = ({ data, errMsg }) => {
 
     return (
         <>
-            {data && (
+            {data ? (
                 <ItemsUI handleItemClicked={handleItemClicked} data={data} />
+            ) : (
+                <p style={{ textAlign: 'center', marginTop: '350px' }}>
+                    Buscando...
+                </p>
             )}
         </>
     );
