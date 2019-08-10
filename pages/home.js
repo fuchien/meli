@@ -7,7 +7,9 @@ const Home = () => (
         <Head>
             <title>Home</title>
         </Head>
-        <h1>Hello World</h1>
+        <p style={{ textAlign: 'center', marginTop: '350px' }}>
+            Bem vindo ao Mercado Livre
+        </p>
     </div>
 );
 
