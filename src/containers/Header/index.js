@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Router } from '../../../routes';
 
 // COMPONENTS
@@ -11,13 +11,31 @@ export default function Header() {
         setValue(e.target.value);
     };
 
+    const handleImgClick = () => {
+        Router.pushRoute('/');
+    };
+
     const handleSubmitForm = e => {
         e.preventDefault();
         Router.pushRoute(`/items/?search=${value}`);
     };
 
+    const handleQuery = () => {
+        const queryString = window.location.search;
+        const params = new URLSearchParams(queryString);
+        const search = params.get('search');
+        if (search) {
+            setValue(search);
+        }
+    };
+
+    useEffect(() => {
+        handleQuery();
+    }, []);
+
     return (
         <HeaderUI
+            handleImgClick={handleImgClick}
             handleSubmitForm={handleSubmitForm}
             value={value}
             handleInputChange={handleInputChange}
