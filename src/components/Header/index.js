@@ -3,11 +3,17 @@ import React from 'react';
 // STYLED-COMPONENTS
 import { Container } from './styles';
 
-export default function Header({ handleSubmitForm, handleInputChange, value }) {
+export default function Header({
+    handleSubmitForm,
+    handleInputChange,
+    handleImgClick,
+    value
+}) {
     return (
         <Container>
             <div className="header">
                 <img
+                    onClick={() => handleImgClick()}
                     className="header__img"
                     src="/static/images/Logo_ML.png"
                     alt="Mercado Livre"
