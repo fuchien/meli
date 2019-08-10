@@ -16,6 +16,8 @@
     "scripts": {
         "start:dev": "node server.js",
         "cypress:open": "cypress open",
+        "cypress:run": "cypress run",
+        "cypress:run:browse": "cypress run --browser chrome",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
