@@ -14,7 +14,7 @@ cypress-e2e:
     before_script:
         - npm install
     script:
-        - $(npm bin)/cypress run
+        - cypress:run
     # artifacts:
     #     expire_in: 1 week
     #     when: always
@@ -28,7 +28,7 @@ cypress-e2e-chrome:
     before_script:
         - npm install
     script:
-        - $(npm bin)/cypress run --browser chrome
+        - cypress:run:browse
     # artifacts:
     #     expire_in: 1 week
     #     when: always
