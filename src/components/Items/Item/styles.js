@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import media from '../../../global/media_screen';
+
 export const Container = styled.div`
     width: 100%;
     padding: 10px;
@@ -11,6 +13,9 @@ export const Container = styled.div`
         width: 100%;
         height: auto;
         flex: 1;
+        ${media.SCREEN_1440`
+            max-width: 150px;
+        `}
     }
 
     .item__content {
