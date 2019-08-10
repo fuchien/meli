@@ -11,6 +11,8 @@ cache:
 cypress-e2e:
     image: cypress/base:10
     stage: test
+    before_script:
+        - npm install
     script:
         - $(npm bin)/cypress run
     artifacts:
@@ -23,6 +25,8 @@ cypress-e2e:
 cypress-e2e-chrome:
     image: cypress/browsers:chrome67
     stage: test
+    before_script:
+        - npm install
     script:
         - $(npm bin)/cypress run --browser chrome
     artifacts:
