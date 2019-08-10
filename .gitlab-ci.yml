@@ -15,12 +15,12 @@ cypress-e2e:
         - npm install
     script:
         - $(npm bin)/cypress run
-    artifacts:
-        expire_in: 1 week
-        when: always
-        paths:
-            - cypress/screenshots
-            - cypress/videos
+    # artifacts:
+    #     expire_in: 1 week
+    #     when: always
+    #     paths:
+    #         - cypress/screenshots
+    #         - cypress/videos
 
 cypress-e2e-chrome:
     image: cypress/browsers:chrome67
@@ -29,9 +29,9 @@ cypress-e2e-chrome:
         - npm install
     script:
         - $(npm bin)/cypress run --browser chrome
-    artifacts:
-        expire_in: 1 week
-        when: always
-        paths:
-            - cypress/screenshots
-            - cypress/videos
+    # artifacts:
+    #     expire_in: 1 week
+    #     when: always
+    #     paths:
+    #         - cypress/screenshots
+    #         - cypress/videos
