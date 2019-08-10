@@ -22,7 +22,6 @@ Items.getInitialProps = async ({ query }) => {
     const { data } = await api.get(
         `/sites/MLA/search?q=${query.search}&limit=${limit}`
     );
-    // const { data } = await api.get();
     return { data };
 };
 
