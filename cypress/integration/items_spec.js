@@ -1,28 +1,9 @@
-import { mockItems } from '../../src/mocks/items.mock';
+import resultJSON from '../fixtures/results.json';
 
 Cypress.on('uncaught:exception', (err, runnable) => false);
 describe('MELI Items page', () => {
-    const typedText = 'Apple ipod';
-    const mockFunction = results => {
-        const response = {
-            site_id: 'MLA',
-            query: 'Apple ipod',
-            paging: {
-                total: 2109,
-                offset: 0,
-                limit: 50,
-                primary_results: 1000
-            },
-            results
-        };
-        cy.server();
-        cy.route({
-            method: 'GET',
-            response,
-            status: 200,
-            url: `https://api.mercadolibre.com/sites/MLA/search?q=${typedText}`
-        });
-    };
+    const typedText = 'Appleipod';
+
     beforeEach(() => {
         cy.visit(`/items/?search=${typedText}`);
     });
@@ -50,11 +31,11 @@ describe('MELI Items page', () => {
             const urlParams = new URLSearchParams(loc.search);
             const search = urlParams.get('search');
             expect(loc.pathname).to.eq(`/items/`);
-            expect(search).to.eq('Apple ipod');
+            expect(search).to.eq(typedText);
         });
     });
 
-    // it('should show empty result after search item', () => {
+    // it.only('should show empty result after search item', () => {
     //     const response = {
     //         site_id: 'MLA',
     //         query: 'Apple ipod',
@@ -67,22 +48,17 @@ describe('MELI Items page', () => {
     //         results: []
     //     };
     //     cy.server();
-    //     cy.route({
-    //         method: 'GET',
-    //         response,
-    //         status: 200,
-    //         url: `https://api.mercadolibre.com/sites/MLA/search?q=${typedText}`
-    //     });
+    //     cy.route('GET', '**/sites/MLA/**', response);
     //     cy.get('.items__empty__error').should('be.visible');
     // });
 
     it('should show results after search item', () => {
-        mockFunction(mockItems);
+        // mockFunction(mockItems);
         cy.get('.items .items__list').should('be.visible');
     });
 
     it('should show 4 results after search item', () => {
-        mockFunction(mockItems);
+        // mockFunction(mockItems);
         cy.get('.items .items__list')
             .should('be.visible')
             .children('.items__list__item')
@@ -90,7 +66,7 @@ describe('MELI Items page', () => {
     });
 
     it('should show correct result card', () => {
-        mockFunction(mockItems);
+        // mockFunction(mockItems);
         cy.get('.items .items__list')
             .should('be.visible')
             .children('.items__list__item')
@@ -106,7 +82,7 @@ describe('MELI Items page', () => {
     });
 
     it('should change to item details route', () => {
-        mockFunction(mockItems);
+        cy.takeResults();
         cy.get('.items .items__list')
             .should('be.visible')
             .children('.items__list__item')
@@ -114,7 +90,9 @@ describe('MELI Items page', () => {
             .click({ force: true, multiple: true })
             .location()
             .should(loc => {
-                expect(loc.pathname).to.eq(`/items/${mockItems[0].id}`);
+                expect(loc.pathname).to.eq(
+                    `/items/${resultJSON.results[0].id}`
+                );
             });
     });
 });
