@@ -6,24 +6,22 @@ import { Container } from './styles';
 // COMPONENTS
 import Item from './Item';
 
-const Items = ({ data }) => {
-    const showResults = results => {
-        return (
-            <ul className="items__list">
-                {results.map(result => (
-                    <li key={result.id} className="items__list__item">
-                        <Item {...result} />
-                    </li>
-                ))}
-            </ul>
-        );
-    };
-
+const Items = ({ data, handleItemClicked }) => {
     return (
         <Container>
             <div className="items">
                 {data.results.length ? (
-                    showResults(data.results)
+                    <ul className="items__list">
+                        {data.results.map(result => (
+                            <li
+                                key={result.id}
+                                onClick={() => handleItemClicked(result.id)}
+                                className="items__list__item"
+                            >
+                                <Item {...result} />
+                            </li>
+                        ))}
+                    </ul>
                 ) : (
                     <p className="items__empty__error">Nenhum item achado</p>
                 )}
