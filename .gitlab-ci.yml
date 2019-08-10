@@ -17,7 +17,7 @@ install:
     stage: build
 
     script:
-        - npm ci
+        - npm install --save-dev cypress
         - $(npm bin)/cypress cache path
         - $(npm bin)/cypress cache list
         - $(npm bin)/cypress verify
