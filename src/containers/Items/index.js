@@ -9,19 +9,23 @@ const Items = ({ data, errMsg }) => {
         Router.pushRoute(`/items/${id}`);
     };
 
-    const validationErr = err => {
-        if (err) {
-            Router.pushRoute('/');
-        }
-    };
+    // const validationErr = err => {
+    //     if (err) {
+    //         Router.pushRoute('/');
+    //     }
+    // };
 
     useEffect(() => {
-        validationErr(errMsg);
+        // validationErr(errMsg);
     }, [errMsg]);
 
     return (
         <>
-            {data ? (
+            {errMsg ? (
+                <p style={{ textAlign: 'center', marginTop: '350px' }}>
+                    {errMsg}
+                </p>
+            ) : data ? (
                 <ItemsUI handleItemClicked={handleItemClicked} data={data} />
             ) : (
                 <p style={{ textAlign: 'center', marginTop: '350px' }}>
