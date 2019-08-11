@@ -19,11 +19,12 @@ const Details = props => (
 
 Details.getInitialProps = async ({ query: { id } }) => {
     try {
-        const detailsResponse = await api.get(`/items/${id}`);
-        const descriptionResponse = await api.get(`/items/${id}/description`);
+        const {
+            data: { details, description }
+        } = await api.get(`/api/items/${id}`);
         return {
-            details: detailsResponse.data,
-            description: descriptionResponse.data
+            details,
+            description
         };
     } catch (err) {
         return {
