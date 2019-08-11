@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'https://api.mercadolibre.com'
+    baseURL: process.env.MELI_API_URL
 });
 
 export default axiosInstance;
