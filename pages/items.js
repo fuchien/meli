@@ -22,11 +22,14 @@ Items.getInitialProps = async ({ query }) => {
             errMsg: 'Nao buscou nenhum item'
         };
     }
-    const limit = 4;
-    const { data } = await api.get(
-        `/sites/MLA/search?q=${query.search}&limit=${limit}`
-    );
-    return { data };
+    try {
+        const { data } = await api.get(`/api/items?q=${query.search}`);
+        return { data };
+    } catch (err) {
+        return {
+            errMsg: 'Erro ao buscar os produtos'
+        };
+    }
 };
 
 export default Items;
