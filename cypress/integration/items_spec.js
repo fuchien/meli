@@ -81,6 +81,11 @@ describe('MELI Items page', () => {
             .should('be.visible');
     });
 
+    it('should show categories div', () => {
+        cy.takeResults();
+        cy.get('.items__categories').should('be.visible');
+    });
+
     it('should change to item details route', () => {
         cy.takeResults();
         cy.get('.items .items__list')
