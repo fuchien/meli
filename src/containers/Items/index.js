@@ -2,49 +2,48 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Router } from '../../../routes';
 
+// STORE
+import Connect from '../../store/config/connect';
+import { turnLoadingOff, turnLoadingOn } from '../../store/ducks/products';
+
 // COMPONENTS
 import ItemsUI from '../../components/Items';
+import Loader from '../../components/UI/Loader';
 
-const Items = ({ data, errMsg }) => {
+const Items = ({ data, dispatch, loading }) => {
     const handleItemClicked = id => {
+        dispatch(turnLoadingOn());
         Router.pushRoute(`/items/${id}`);
     };
 
-    // const validationErr = err => {
-    //     if (err) {
-    //         Router.pushRoute('/');
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     validationErr(errMsg);
-    // }, [errMsg]);
+    useEffect(() => {
+        dispatch(turnLoadingOff());
+    }, []);
 
     return (
         <>
-            {errMsg ? (
-                <p style={{ textAlign: 'center', marginTop: '350px' }}>
-                    {errMsg}
-                </p>
-            ) : data ? (
+            {!loading ? (
                 <ItemsUI handleItemClicked={handleItemClicked} data={data} />
             ) : (
-                <p style={{ textAlign: 'center', marginTop: '350px' }}>
-                    Buscando...
-                </p>
+                <Loader />
             )}
         </>
     );
 };
 
 Items.defaultProps = {
-    data: null,
-    errMsg: null
+    data: null
 };
 
 Items.propTypes = {
-    data: PropTypes.shape(),
-    errMsg: PropTypes.string
+    data: PropTypes.shape()
 };
 
-export default Items;
+const mapStateToProps = ({ loading }, props) => {
+    return {
+        loading,
+        ...props
+    };
+};
+
+export default Connect(mapStateToProps)(Items);
