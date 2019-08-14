@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Router } from '../../../routes';
 
 // COMPONENTS
@@ -15,9 +16,9 @@ const Items = ({ data, errMsg }) => {
     //     }
     // };
 
-    useEffect(() => {
-        // validationErr(errMsg);
-    }, [errMsg]);
+    // useEffect(() => {
+    //     validationErr(errMsg);
+    // }, [errMsg]);
 
     return (
         <>
@@ -34,6 +35,16 @@ const Items = ({ data, errMsg }) => {
             )}
         </>
     );
+};
+
+Items.defaultProps = {
+    data: null,
+    errMsg: null
+};
+
+Items.propTypes = {
+    data: PropTypes.shape(),
+    errMsg: PropTypes.string
 };
 
 export default Items;
