@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 
 // API
@@ -19,18 +19,20 @@ const Details = props => (
 
 Details.getInitialProps = async ({ query: { id } }) => {
     try {
-        const {
-            data: { details, description }
-        } = await api.get(`/api/items/${id}`);
+        const { data } = await api.get(`/api/items/${id}`);
         return {
-            details,
-            description
+            data
         };
     } catch (err) {
         return {
             err
         };
     }
+};
+
+Details.propTypes = {
+    data: PropTypes.shape(),
+    err: PropTypes.shape()
 };
 
 export default Details;
