@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+// STORE
+import Connect from '../../store/config/connect';
+import { turnLoadingOff } from '../../store/ducks/products';
 
 // COMPONENTS
 import DetailsUI from '../../components/Details';
 
-const Details = ({ err, data: { item } }) => {
+const Details = ({ err, data: { item }, dispatch }) => {
     const handleBuyClick = productId => {
         alert(`Produto: ${productId} comprado!`);
         // FEATURES
@@ -12,31 +16,17 @@ const Details = ({ err, data: { item } }) => {
         // REDIRECIONAR PARA CARRINHO DE COMPRAS
     };
 
-    return (
-        <>
-            {err ? (
-                <p
-                    className="details__error"
-                    style={{ textAlign: 'center', marginTop: '350px' }}
-                >
-                    Produto inexistente
-                </p>
-            ) : (
-                <DetailsUI handleBuyClick={handleBuyClick} item={item} />
-            )}
-        </>
-    );
-};
+    useEffect(() => {
+        dispatch(turnLoadingOff());
+    }, []);
 
-Details.defaultProps = {
-    errMsg: null
+    return <DetailsUI handleBuyClick={handleBuyClick} item={item} />;
 };
 
 Details.propTypes = {
-    errMsg: PropTypes.string,
     data: PropTypes.shape({
         item: PropTypes.shape()
     })
 };
 
-export default Details;
+export default Connect()(Details);
