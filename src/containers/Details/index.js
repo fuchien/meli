@@ -1,13 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // COMPONENTS
 import DetailsUI from '../../components/Details';
 
-const Details = props => {
-    const { err } = props;
-
-    const handleBuyClick = (productId, sellerId) => {
-        alert(`id: ${productId} do vendedor ${sellerId} comprado!`);
+const Details = ({ err, data: { item } }) => {
+    const handleBuyClick = productId => {
+        alert(`Produto: ${productId} comprado!`);
         // FEATURES
         // ADICIONAR NO CARRINHO
         // REDIRECIONAR PARA CARRINHO DE COMPRAS
@@ -23,10 +22,21 @@ const Details = props => {
                     Produto inexistente
                 </p>
             ) : (
-                <DetailsUI handleBuyClick={handleBuyClick} {...props} />
+                <DetailsUI handleBuyClick={handleBuyClick} item={item} />
             )}
         </>
     );
+};
+
+Details.defaultProps = {
+    errMsg: null
+};
+
+Details.propTypes = {
+    errMsg: PropTypes.string,
+    data: PropTypes.shape({
+        item: PropTypes.shape()
+    })
 };
 
 export default Details;
