@@ -8,14 +8,27 @@ import api from '../src/services/api';
 // CONTAINERS
 import DetailsUI from '../src/containers/Details';
 
-const Details = props => (
-    <>
-        <Head>
-            <title>Details</title>
-        </Head>
-        <DetailsUI {...props} />
-    </>
-);
+const Details = props => {
+    const { data, errMsg } = props;
+
+    return (
+        <>
+            <Head>
+                <title>Details</title>
+            </Head>
+            {errMsg ? (
+                <p
+                    className="details__error"
+                    style={{ textAlign: 'center', marginTop: '350px' }}
+                >
+                    {errMsg}
+                </p>
+            ) : (
+                <DetailsUI data={data} />
+            )}
+        </>
+    );
+};
 
 Details.getInitialProps = async ({ query: { id } }) => {
     try {
@@ -24,8 +37,9 @@ Details.getInitialProps = async ({ query: { id } }) => {
             data
         };
     } catch (err) {
+        const { msg } = err.response.data;
         return {
-            err
+            errMsg: msg ? msg : 'Erro ao buscar os detalhes do produto'
         };
     }
 };
