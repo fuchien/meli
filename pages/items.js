@@ -9,15 +9,26 @@ import api from '../src/services/api';
 import ItemsUI from '../src/containers/Items';
 import CategoriesUI from '../src/containers/Categories';
 
-const Items = ({ data, errMsg }) => (
-    <>
-        <Head>
-            <title>Items</title>
-        </Head>
-        <CategoriesUI categories={data.categories} />
-        <ItemsUI data={data} errMsg={errMsg} />
-    </>
-);
+const Items = props => {
+    const { data, errMsg } = props;
+    return (
+        <>
+            <Head>
+                <title>Items</title>
+            </Head>
+            {errMsg ? (
+                <p style={{ textAlign: 'center', marginTop: '350px' }}>
+                    {errMsg}
+                </p>
+            ) : (
+                <>
+                    <CategoriesUI categories={data.categories} />
+                    <ItemsUI data={data} />
+                </>
+            )}
+        </>
+    );
+};
 
 Items.defaultProps = {
     data: null,
@@ -39,8 +50,9 @@ Items.getInitialProps = async ({ query }) => {
         const { data } = await api.get(`/api/items?q=${query.search}`);
         return { data };
     } catch (err) {
+        const { msg } = err.response.data;
         return {
-            errMsg: 'Erro ao buscar os produtos'
+            errMsg: msg ? msg : 'Erro ao buscar os produtosssss'
         };
     }
 };
