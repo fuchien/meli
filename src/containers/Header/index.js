@@ -4,7 +4,7 @@ import { Router } from '../../../routes';
 // COMPONENTS
 import HeaderUI from '../../components/Header';
 
-export default function Header() {
+const Header = () => {
     const [value, setValue] = useState('');
 
     const handleInputChange = e => {
@@ -41,4 +41,6 @@ export default function Header() {
             handleInputChange={handleInputChange}
         />
     );
-}
+};
+
+export default Header;
