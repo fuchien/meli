@@ -1,14 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // STYLED-COMPONENTS
 import { Container } from './styles';
 
-export default function Header({
+const Header = ({
     handleSubmitForm,
     handleInputChange,
     handleImgClick,
     value
-}) {
+}) => {
     return (
         <Container>
             <div className="header">
@@ -38,4 +39,13 @@ export default function Header({
             </div>
         </Container>
     );
-}
+};
+
+Header.propTypes = {
+    handleSubmitForm: PropTypes.func.isRequired,
+    handleInputChange: PropTypes.func.isRequired,
+    handleImgClick: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
+};
+
+export default Header;
