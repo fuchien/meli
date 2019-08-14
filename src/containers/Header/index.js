@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Router } from '../../../routes';
 
+// STORE
+import Connect from '../../store/config/connect';
+import { turnLoadingOn } from '../../store/ducks/products';
+
 // COMPONENTS
 import HeaderUI from '../../components/Header';
 
-const Header = () => {
+const Header = props => {
     const [value, setValue] = useState('');
 
     const handleInputChange = e => {
@@ -17,6 +21,7 @@ const Header = () => {
 
     const handleSubmitForm = e => {
         e.preventDefault();
+        props.dispatch(turnLoadingOn());
         Router.pushRoute(`/items/?search=${value}`);
     };
 
@@ -43,4 +48,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Connect()(Header);
