@@ -20,6 +20,7 @@ export const Container = styled.div`
         `}
 
         .header__img {
+            cursor: pointer;
             background-size: 44px 31px;
             width: 44px;
             height: 32px;
