@@ -9,8 +9,8 @@ export const PageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 50px 20px;
+    padding: 0 20px 50px 20px;
     ${media.SCREEN_1232`
-        padding: 50px 200px;
+        padding: 0 200px 50px 200px;
     `}
 `;
