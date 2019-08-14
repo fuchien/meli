@@ -6,6 +6,10 @@ import media from '../../global/media_screen';
 import { PageContainer } from '../../global/page_container';
 
 export const Container = styled(PageContainer)`
+    padding-top: 50px;
+    ${media.SCREEN_1232`
+        padding-top: 50px;
+    `}
     .details {
         width: 100%;
         background-color: #fff;
