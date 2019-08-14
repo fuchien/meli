@@ -2,6 +2,9 @@ import React from 'react';
 import Head from 'next/head';
 import App, { Container } from 'next/app';
 
+// STORE
+import Store from '../src/store/Provider';
+
 // CONTAINERS
 import Header from '../src/containers/Header';
 
@@ -13,18 +16,20 @@ class MyApp extends App {
         const { Component, pageProps } = this.props;
 
         return (
-            <Container>
-                <Head>
-                    <meta
-                        name="viewport"
-                        content="width=device-width, initial-scale=1"
-                    />
-                    <meta charSet="utf-8" />
-                </Head>
-                <GlobalStyle />
-                <Header />
-                <Component {...pageProps} />
-            </Container>
+            <Store>
+                <Container>
+                    <Head>
+                        <meta
+                            name="viewport"
+                            content="width=device-width, initial-scale=1"
+                        />
+                        <meta charSet="utf-8" />
+                    </Head>
+                    <GlobalStyle />
+                    <Header />
+                    <Component {...pageProps} />
+                </Container>
+            </Store>
         );
     }
 }
