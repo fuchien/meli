@@ -28,7 +28,7 @@ jobs:
             - run:
                 command: unset NODE_OPTIONS
             - run:
-                  command: npx cypress verify
+                  command: NODE_OPTIONS=--max_old_space_size=4096 yarn cypress verify
             - save_cache:
                   key: cache-{{ .Branch }}-{{ checksum "package.json" }}
                   paths:
@@ -43,7 +43,7 @@ jobs:
                   at: ~/
             - run:
                   name: Run Cypress tests
-                  command: 'npx cypress run'
+                  command: 'yarn cypress run'
 
     deploy:
         docker:
