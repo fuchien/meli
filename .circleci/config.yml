@@ -46,7 +46,7 @@ jobs:
                   command: 'npx cypress run'
 
     build:
-        steps
+        steps:
             - run: yarn build
 
     deploy:
