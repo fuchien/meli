@@ -1,9 +1,6 @@
 version: 2.1
 jobs:
     build:
-        branches:
-            only:
-                - develop
         docker:
             - image: deptno/circleci-awscli-node8:0.1
         working_directory: ~/repo
