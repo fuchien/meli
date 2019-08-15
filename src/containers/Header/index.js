@@ -36,6 +36,7 @@ const Header = props => {
 
     useEffect(() => {
         handleQuery();
+        Router.pushRoute(`/`);
     }, []);
 
     return (
