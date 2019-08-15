@@ -17,8 +17,9 @@
     "scripts": {
         "start:dev": "node server.js",
         "build:dev": "next build",
-        "start": "next start",
+        "start": "next start -p $PORT",
         "build": "NODE_ENV=production next build",
+        "heroku-postbuild": "npm run build",
         "cypress:open": "./node_modules/.bin/cypress open",
         "cypress:run": "./node_modules/.bin/cypress run",
         "cypress:run:browse": "./node_modules/.bin/cypress run --browser chrome",
