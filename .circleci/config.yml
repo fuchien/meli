@@ -57,15 +57,15 @@ jobs:
 
 workflows:
     version: 2
-    build-deploy:
+    build-test-and-deploy:
         jobs:
             - build
             - cypress/run
-                requires:
-                    - build
+                    requires:
+                        - build
             - deploy:
-                requires:
-                    - cypress/run
-                filters:
-                    branches:
-                        only: develop
+                    requires:
+                        - cypress/run
+                    filters:
+                        branches:
+                            only: develop
