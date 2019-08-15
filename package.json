@@ -19,7 +19,7 @@
         "start:dev": "node server.js",
         "build:dev": "./node_modules/env-cmd-multiple/bin/env-cmd.js .env next build",
         "start": "next start -p $PORT",
-        "build": "./node_modules/env-cmd-multiple/bin/env-cmd.js .env.production NODE_ENV=production next build",
+        "build": "./node_modules/env-cmd-multiple/bin/env-cmd.js .env.production next build",
         "heroku-postbuild": "npm run build",
         "cypress:open": "./node_modules/.bin/cypress open",
         "cypress:run": "./node_modules/.bin/cypress run",
