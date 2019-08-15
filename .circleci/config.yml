@@ -65,6 +65,7 @@ workflows:
             - deploy:
                   requires:
                       - build
+                      - cypress/run
                   filters:
                       branches:
                           only: develop
