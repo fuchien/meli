@@ -20,7 +20,7 @@ jobs:
         docker:
             - image: cypress/base:10
         requires:
-                - build
+            - build
         steps:
             - checkout
             - restore_cache:
@@ -63,7 +63,8 @@ workflows:
         jobs:
             - cypress/run
             - deploy:
-                - cypress/run
-                    filters:
-                        branches:
-                            only: develop
+                  requires:
+                      - cypress/run
+                  filters:
+                      branches:
+                          only: develop
