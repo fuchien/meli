@@ -1,6 +1,6 @@
 version: 2
 jobs:
-    build:
+    install:
         docker:
             - image: circleci/node:10.15.3
         working_directory: ~/repo
@@ -14,9 +14,41 @@ jobs:
                   key: v1-npm-deps-{{ checksum "package.json" }}
                   paths:
                       - ./node_modules
-            - run: yarn cypress:run
-            - run: yarn cypress:run:browse
+
+    cypress/run:
+        docker:
+            - image: cypress/base:10
+        parallelism: 1
+        steps:
+            - checkout
+            - restore_cache:
+                  keys:
+                      - cache-{{ .Branch }}-{{ checksum "package.json" }}
+            - run:
+                  name: Npm CI
+                  command: npm ci
+            - run:
+                  command: npx cypress verify
+            - save_cache:
+                  key: cache-{{ .Branch }}-{{ checksum "package.json" }}
+                  paths:
+                      - ~/.npm
+                      - ~/.cache
+            - persist_to_workspace:
+                  root: ~/
+                  paths:
+                      - project
+                      - .cache/Cypress
+            - attach_workspace:
+                  at: ~/
+            - run:
+                  name: Run Cypress tests
+                  command: 'npx cypress run'
+
+    build:
+        steps
             - run: yarn build
+
     deploy:
         docker:
             - image: buildpack-deps:trusty
@@ -31,10 +63,12 @@ workflows:
     version: 2
     build-deploy:
         jobs:
+            - install
+            - cypress/run
             - build
             - deploy:
                   requires:
-                      - build
+                      - install
                   filters:
                       branches:
                           only: develop
