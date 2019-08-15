@@ -64,6 +64,6 @@ workflows:
             - cypress/run
             - deploy:
                 - cypress/run
-                filters:
-                    branches:
-                        only: develop
+                    filters:
+                        branches:
+                            only: develop
