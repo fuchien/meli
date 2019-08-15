@@ -10,11 +10,11 @@ jobs:
             - restore_cache:
                   key: v1-npm-deps-{{ checksum "package.json" }}
             - run: yarn
-            - run: yarn build
             - save_cache:
                   key: v1-npm-deps-{{ checksum "package.json" }}
                   paths:
-                      - node_modules
+                      - ./node_modules
+            - run: yarn build
             # - run: yarn cypress:run
             # - run: yarn cypress:run:browse
     deploy:
