@@ -25,8 +25,8 @@ jobs:
             - restore_cache:
                   keys:
                       - cache-{{ .Branch }}-{{ checksum "package.json" }}
-            - run:
-                  command: npx cypress verify
+            # - run:
+            #       command: npx cypress verify
             - save_cache:
                   key: cache-{{ .Branch }}-{{ checksum "package.json" }}
                   paths:
