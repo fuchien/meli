@@ -60,12 +60,12 @@ workflows:
     build-test-and-deploy:
         jobs:
             - build
-            - cypress/run
-                    requires:
-                        - build
+            - cypress/run:
+                  requires:
+                      - build
             - deploy:
-                    requires:
-                        - cypress/run
-                    filters:
-                        branches:
-                            only: develop
+                  requires:
+                      - cypress/run
+                  filters:
+                      branches:
+                          only: develop
