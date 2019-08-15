@@ -26,6 +26,8 @@ jobs:
                   keys:
                       - cache-{{ .Branch }}-{{ checksum "package.json" }}
             - run:
+                command: unset NODE_OPTIONS
+            - run:
                   command: npx cypress verify
             - save_cache:
                   key: cache-{{ .Branch }}-{{ checksum "package.json" }}
@@ -60,6 +62,7 @@ workflows:
             - cypress/run
             # - build
             # - cypress/run:
+                    # record: true
             #       requires:
             #           - build
             # - deploy:
