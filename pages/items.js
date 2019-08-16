@@ -50,9 +50,8 @@ Items.getInitialProps = async ({ query }) => {
         const { data } = await api.get(`/api/items?q=${query.search}`);
         return { data };
     } catch (err) {
-        const { msg } = err.response.data;
         return {
-            errMsg: msg ? msg : 'Erro ao buscar os produtosssss'
+            errMsg: 'Erro ao buscar os produtosssss'
         };
     }
 };
