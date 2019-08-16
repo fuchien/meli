@@ -22,10 +22,12 @@ jobs:
         docker:
             - image: cypress/base:8
         working_directory: ~/app
+        executor: cypress/browsers-chrome69
+        browser: chrome
         parallel: true # split all specs across machines
         parallelism: 2 # use 4 CircleCI machines to finish quickly
-        start: 'yarn start' # start server before running tests
-        # wait-on: 'http://localhost:3001'
+        start: 'yarn start:ci' # start server before running tests
+        wait-on: 'http://localhost:3001'
         steps:
             - checkout
             - restore_cache:

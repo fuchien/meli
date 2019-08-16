@@ -13,6 +13,7 @@
         "prop-types": "^15.7.2",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
+        "serve": "^11.1.0",
         "styled-components": "^4.3.2"
     },
     "scripts": {
@@ -20,6 +21,7 @@
         "build:dev": "./node_modules/env-cmd-multiple/bin/env-cmd.js .env next build",
         "start": "next start -p $PORT",
         "build": "./node_modules/env-cmd-multiple/bin/env-cmd.js .env.production next build",
+        "start:ci": "serve --no-clipboard --listen ${PORT:-3001}",
         "heroku-postbuild": "npm run build",
         "cypress:open": "./node_modules/.bin/cypress open",
         "cypress:run": "./node_modules/.bin/cypress run",
