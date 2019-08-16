@@ -37,9 +37,8 @@ Details.getInitialProps = async ({ query: { id } }) => {
             data
         };
     } catch (err) {
-        const { msg } = err.response.data;
         return {
-            errMsg: msg ? msg : 'Erro ao buscar os detalhes do produto'
+            errMsg: 'Erro ao buscar os detalhes do produto'
         };
     }
 };
