@@ -22,10 +22,10 @@ jobs:
         docker:
             - image: cypress/base:8
         working_directory: ~/app
+        record: true
         parallel: true # split all specs across machines
         parallelism: 2 # use 4 CircleCI machines to finish quickly
         start: 'yarn start:ci' # start server before running tests
-        wait-on: 'http://localhost:3001'
         steps:
             - checkout
             - restore_cache:
@@ -40,7 +40,7 @@ jobs:
                   key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
                   paths:
                       - ~/.cache ## cache both yarn and Cypress!
-            - run: $(yarn bin)/cypress run
+            - run: $(yarn bin)/cypress run --record --key ce012dfa-40d7-403c-92e0-59432dd1aef1
 
     deploy:
         docker:
