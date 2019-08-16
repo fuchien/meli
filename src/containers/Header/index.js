@@ -35,7 +35,7 @@ const Header = props => {
     };
 
     const handlerHomePage = () => {
-        if (Router.route === '/home') {
+        if (Router.route.includes('/home')) {
             Router.pushRoute('/');
         }
     };
