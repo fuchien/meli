@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import media from './media_screen';
 
 export const PageContainer = styled.div`
-    width: 100vw;
+    min-width: 100%;
     height: calc(100% - 56px);
     background-color: #eee;
     display: flex;
