@@ -21,7 +21,7 @@
         "build:dev": "./node_modules/env-cmd-multiple/bin/env-cmd.js .env next build",
         "start": "next start -p $PORT",
         "build": "./node_modules/env-cmd-multiple/bin/env-cmd.js .env.production next build",
-        "start:ci": "serve --no-clipboard --listen ${PORT:-3001}",
+        "start:ci": "serve --no-clipboard --listen ${PORT:-8080}",
         "heroku-postbuild": "npm run build",
         "cypress:open": "./node_modules/.bin/cypress open",
         "cypress:run": "./node_modules/.bin/cypress run",

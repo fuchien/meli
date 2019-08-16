@@ -3,7 +3,7 @@ import resultJSON from '../fixtures/results.json';
 Cypress.on('uncaught:exception', (err, runnable) => false);
 describe('MELI Item Details page', () => {
     beforeEach(() => {
-        cy.visit(`http://localhost:3001/items/${resultJSON.results[0].id}`);
+        cy.visit(`http://localhost:8080/items/${resultJSON.results[0].id}`);
     });
 
     it('should show page and item id on url', () => {

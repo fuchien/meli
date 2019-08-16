@@ -5,7 +5,7 @@ describe('MELI Items page', () => {
     const typedText = 'Appleipod';
 
     beforeEach(() => {
-        cy.visit(`http://localhost:3001/items/?search=${typedText}`);
+        cy.visit(`http://localhost:8080/items/?search=${typedText}`);
     });
 
     it('should show page and query in url', () => {
