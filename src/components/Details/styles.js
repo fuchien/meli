@@ -35,10 +35,12 @@ export const Container = styled(PageContainer)`
                     justify-content: center;
                     align-items: center;
                     flex: 3;
+                    height: 500px;
                 `}
                 .details__img {
                     width: 200px;
                     ${media.SCREEN_667`
+                        max-height: 500px;
                         width: 250px;
                     `}
                     ${media.SCREEN_812`
