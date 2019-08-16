@@ -52,7 +52,6 @@ workflows:
         jobs:
             - build
             - cypress/run:
-                  record: true
                   requires:
                       - build
             - deploy:
