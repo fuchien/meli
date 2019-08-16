@@ -22,6 +22,9 @@ jobs:
         docker:
             - image: cypress/base:8
         working_directory: ~/app
+        parallel: true # split all specs across machines
+        parallelism: 2 # use 4 CircleCI machines to finish quickly
+        start: 'yarn start:dev' # start server before running tests
         steps:
             - checkout
             - restore_cache:
@@ -56,7 +59,6 @@ workflows:
             - cypress/run:
                   requires:
                       - build
-                  start: 'yarn start:dev'
             - deploy:
                   requires:
                       - cypress/run
