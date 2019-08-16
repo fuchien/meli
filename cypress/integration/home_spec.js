@@ -1,7 +1,7 @@
 Cypress.on('uncaught:exception', (err, runnable) => false);
 describe('MELI Home page', () => {
     beforeEach(() => {
-        cy.visit('/');
+        cy.visit('http://localhost:3001/');
     });
     it('should show header', () => {
         cy.get('.header')
