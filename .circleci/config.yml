@@ -18,10 +18,7 @@ jobs:
 
     cypress/run:
         docker:
-        - image: cypress/base:8
-            environment:
-            ## this enables colors in the output
-                TERM: xterm
+            - image: cypress/base:8
         working_directory: ~/app
         steps:
             - checkout
