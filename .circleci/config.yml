@@ -1,4 +1,6 @@
 version: 2
+orbs:
+    cypress: cypress-io/cypress@1
 jobs:
     build:
         docker:
@@ -54,6 +56,9 @@ workflows:
             - cypress/run:
                   requires:
                       - build
+                  parallel: true # split all specs across machines
+                  parallelism: 4 # use 4 CircleCI machines to finish quickly
+                  start: 'yarn start:dev' # start server before running tests
             - deploy:
                   requires:
                       - cypress/run
