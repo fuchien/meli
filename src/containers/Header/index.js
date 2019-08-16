@@ -34,9 +34,15 @@ const Header = props => {
         }
     };
 
+    const handlerHomePage = () => {
+        if (Router.route === '/home') {
+            Router.pushRoute('/');
+        }
+    };
+
     useEffect(() => {
         handleQuery();
-        Router.pushRoute(`/`);
+        handlerHomePage();
     }, []);
 
     return (
