@@ -25,6 +25,7 @@ jobs:
         parallel: true # split all specs across machines
         parallelism: 2 # use 4 CircleCI machines to finish quickly
         start: 'yarn start:dev' # start server before running tests
+        wait-on: 'http://localhost:3001'
         steps:
             - checkout
             - restore_cache:
