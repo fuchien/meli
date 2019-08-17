@@ -113,9 +113,10 @@ Return product details and description
 
 ---
 
-# Todo list
+# To do list
 
 -   Using all data in context store.
 -   Add enzyme to unit test.
 -   Mocking API request for Next.js.
 -   Add test jobs in pipeline.
+-   Add health check.
