@@ -72,7 +72,7 @@ The frontend application will receive input text or search query, that will requ
 _Technologies_
 
 ```
-React to component
+React/Hooks to component
 Styled-components to styling easier
 Context-api to manipulate simple store
 Next.js to perform SEO
@@ -115,6 +115,7 @@ Return product details and description
 
 # Todo list
 
--   Using all data in context store, unit test with enzyme.
+-   Using all data in context store.
+-   Add enzyme to unit test.
 -   Mocking API request for Next.js.
 -   Add test jobs in pipeline.
