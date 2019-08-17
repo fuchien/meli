@@ -1,6 +1,6 @@
 # Melicidade front test
 
-> Challenge to create a simple frontend, show almost same screen with Mercado Livre page, on input in header, you can type some product and will search in API and show on the screen, you can click each one to see the details and description.
+> The challenge is create a simple frontend, presenting the same screen as Mercado Livre page. On input in header, you will be able to type some product, then the application will search in API and show the result on the screen, after all, you can click each one to see the details and description.
 
 ## Developing
 
@@ -38,7 +38,7 @@ npm run start:dev or yarn start:dev
 
 ---
 
-### For both, the _PORT_ is _3001_\*\*
+### For both, the _PORT_ is _3001_
 
 _Open your favourite browser, and test_
 
@@ -67,7 +67,7 @@ For this moment, only can run **cypress e2e test** locally
 
 ## Description and solution
 
-The frontend application will receive input text or search query, so request to backend API and show all of items.
+The frontend application will receive input text or search query, that will request to backend API and show all of items.
 
 _Technologies_
 
@@ -105,11 +105,11 @@ Show the home page and welcome message.
 
 ## ItemsPage
 
-Return on list with max 4 Products searched by query
+Return a list with max 4 Products searched by query
 
 ## DetailsPage
 
-Return product clicked details and description
+Return product details and description
 
 ---
 
