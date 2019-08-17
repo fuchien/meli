@@ -24,9 +24,8 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 Cypress.Commands.add('takeResults', () => {
-    const typedText = 'Appleipod';
+    const typedText = 'iphoneX';
     cy.server();
-    cy.fixture('results.json').as('resultsJSON');
-    cy.route('GET', '**/sites/MLA/**', '@resultsJSON');
+    cy.route('GET', '**/api/items/**', 'fixture:results.json');
     cy.visit(`/items/?search=${typedText}`);
 });
