@@ -3,17 +3,20 @@ import resultJSON from '../fixtures/results.json';
 Cypress.on('uncaught:exception', (err, runnable) => false);
 describe('MELI Item Details page', () => {
     beforeEach(() => {
-        cy.visit(`http://localhost:8080/items/${resultJSON.results[0].id}`);
+        cy.visit(`/items/${resultJSON.items[0].id}`);
     });
 
     it('should show page and item id on url', () => {
-        cy.location().should(loc => {
-            expect(loc.pathname).to.eq(`/items/${resultJSON.results[0].id}`);
-        });
+        cy.wait(2000)
+            .location()
+            .should(loc => {
+                expect(loc.pathname).to.eq(`/items/${resultJSON.items[0].id}`);
+            });
     });
 
     it('should show all the item details', () => {
-        cy.get('.details__img')
+        cy.wait(2000)
+            .get('.details__img')
             .should('be.visible')
             .get('.details__title')
             .should('be.visible')
@@ -31,6 +34,8 @@ describe('MELI Item Details page', () => {
 
     it('should show error msg if not exist the product id', () => {
         cy.visit(`/items/asdasiudhu12h3iu21kj`);
-        cy.get('.details__error').should('be.visible');
+        cy.wait(2000)
+            .get('.details__error')
+            .should('be.visible');
     });
 });
