@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    melicidade_front:
+        build: .
+        ports:
+            - '3001:3001'
+        container_name: melicidade_front
+        hostname: melicidade_front
+        command: yarn start:dev
