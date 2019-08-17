@@ -1,68 +1,120 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Melicidade front test
 
-## Available Scripts
+> Challenge to create a simple frontend, show almost same screen with Mercado Livre page, on input in header, you can type some product and will search in API and show on the screen, you can click each one to see the details and description.
 
-In the project directory, you can run:
+## Developing
 
-### `npm start`
+First, you need to install [**docker**](#Docker) and [**docker-compose**](https://docs.docker.com/compose/install) for **server** or you can run with [**node**](#Node) or [**yarn**](#Node) to start server
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+_Clone the repository_
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+git clone https://github.com/fuchien/meli.git
+```
 
-### `npm test`
+## Docker
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+_Run docker-compose to start the server_
 
-### `npm run build`
+```
+docker-compose up
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Node
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+_Install dependencies_
 
-### `npm run eject`
+```
+npm install or yarn
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+_Start server_
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm run start:dev or yarn start:dev
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### For both, the _PORT_ is _3001_\*\*
 
-## Learn More
+_Open your favourite browser, and test_
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+http://localhost:3001
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## CI/CD Pipeline
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+_Technologies_
 
-### Analyzing the Bundle Size
+```
+Circle CI
+Heroku
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+_You can see the pipeline config on **.circleci/config.yml** file_
 
-### Making a Progressive Web App
+_The jobs are only **build** - **deploy to development**_. The demo link --> [melicidade-dev.herokuapp.com/home](https://melicidade-dev.herokuapp.com/home)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+For this moment, only can run **cypress e2e test** locally
 
-### Advanced Configuration
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Description and solution
 
-### Deployment
+The frontend application will receive input text or search query, so request to backend API and show all of items.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+_Technologies_
 
-### `npm run build` fails to minify
+```
+React to component
+Styled-components to styling easier
+Context-api to manipulate simple store
+Next.js to perform SEO
+Cypress to e2e test
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+---
+
+## Testing
+
+To test the application, only need to run script
+
+```
+yarn cypress:open
+```
+
+You will have each test on browser _Chrome_ for each file.
+
+---
+
+## Endpoint list:
+
+-   [**GET** /home](#HomePage)
+-   [**GET** /items/?search=](#ItemsPage)
+-   [**GET** /items/:id](#DetailsPage)
+
+## HomePage
+
+Show the home page and welcome message.
+
+## ItemsPage
+
+Return on list with max 4 Products searched by query
+
+## DetailsPage
+
+Return product clicked details and description
+
+---
+
+# Todo list
+
+-   Using all data in context store, unit test with enzyme.
+-   Mocking API request for Next.js.
+-   Add test jobs in pipeline.
